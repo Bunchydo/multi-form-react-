@@ -1,0 +1,121 @@
+.step2-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+}
+.personal-info-container2 {
+  height: 40%;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.button-holder-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.go-back {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  color: #9a9b9f;
+}
+
+.plan-selection {
+  display: flex;
+  justify-content: space-between;
+  height: 50%;
+}
+.plan-custom {
+  border: 1.2px solid #9a9b9f;
+  width: 29%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 4% 3%;
+  border-radius: 12px;
+}
+.plan-description {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.plan-title {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.plan-cost {
+  color: #9a9b9f;
+}
+.icon-box img {
+  width: 30%;
+}
+.monthly-yearly-select {
+  width: 100%;
+  background-color: #f8f9fe;
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  gap: 4%;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.slider {
+  background-color: #01295c;
+}
+/* .switch input:checked+.slider {
+    background-color: #4CAF50;
+} */
+
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+.blue-text{
+  color: #51657e;
+  font-weight: bold;
+}
+.is-yearly-option{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

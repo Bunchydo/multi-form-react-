@@ -1,0 +1,76 @@
+.step1-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+}
+.personal-info-container {
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.personal-info-header {
+  font-size: 40px;
+  font-weight: bold;
+  color: #00194f;
+}
+.personal-info-description{
+    font-size: 16px;
+}
+.step1-title-info{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    
+}
+.grey-text{
+    color: #9a9b9f;
+}
+input::placeholder{
+    color: #9a9b9f;
+}
+.step1-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 65%;
+  width: 100%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #03295a;
+}
+.input-custom {
+  padding: 2%;
+  border-radius: 8px;
+  border: 1px solid #dbdadf;
+  font-size: 17px;
+}
+.button-holder {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.next-step-button {
+  width: 25%;
+  padding: 1.9%;
+  background-color: #03295a;
+  color: white;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  font-size: 17px;
+}
+.custom-button{
+  cursor: pointer;
+}

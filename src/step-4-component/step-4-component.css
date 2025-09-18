@@ -1,0 +1,87 @@
+.step4-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+}
+
+.personal-info-container4 {
+  height: 40%;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.finishing-up-info {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-between;
+}
+.final-details {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fe;
+  height: 80%;
+  justify-content: space-between;
+  padding: 3%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.final-details hr {
+  color: grey;
+  width: 97%;
+  margin: 0px;
+}
+.finishing-main {
+  color: #192c4c;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 3%;
+}
+.finishing-plan-row1 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.total-amount {
+  color: #3b2ec6;
+  font-size: 25px;
+  font-weight: bold;
+}
+.total-per-month {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 3%;
+}
+
+.finishing-plan-right-top{
+    display: flex;
+    align-items: center;
+  font-size: 19px;
+  color: #192c4c;
+  font-weight: bold;
+}
+.finishing-change-text{
+    color: grey;
+    text-decoration: underline;
+}
+
+.finishing-title-text{
+    color: grey;
+
+}
+
+.finishing-plan-right{
+    color: #123154;
+    font-size: 17px;
+}
+
+.total-title{
+    color: grey;
+}
+

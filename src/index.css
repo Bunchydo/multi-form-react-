@@ -1,0 +1,21 @@
+@font-face {
+  font-family: Ubuntu-Regular;
+  src: url(../public/fonts/Ubuntu-Regular.ttf);
+}
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #eef5ff;
+  color: #000000;
+}
+
+body,#root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Ubuntu-Regular;
+}
+

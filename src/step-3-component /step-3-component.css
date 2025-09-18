@@ -1,0 +1,108 @@
+.step3-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+}
+.personal-info-container3 {
+  height: 40%;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.add-on-holder {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.services-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* border: 1.3px solid #043f8b; */
+  padding: 5%;
+  border: 1.3px solid grey;
+  border-radius: 12px;
+}
+
+.services-container-active {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5%;
+  border-radius: 12px;
+  background-color: #f3f5ff;
+  border: 1.6px solid #534c92;
+}
+@media screen and (min-width: 1540px) {
+  .services-container {
+    padding: 3%;
+  }
+}
+.right-box-info {
+  display: flex;
+  align-items: center;
+  color: #554bc3;
+}
+.left-box-info {
+  display: flex;
+  width: 45%;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-box-info input[type="checkbox"] {
+  appearance: none;
+  /* remove default style */
+  -webkit-appearance: none;
+  /* Safari/Chrome */
+  width: 25px;
+  height: 25px;
+  border: 1.4px solid grey;
+  border-radius: 4px;
+  /* rounded for radio buttons, optional */
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Style when checked */
+.left-box-info input[type="checkbox"]:checked {
+  background-color: #4d3efb;
+  border-color: none;
+}
+/* Checkmark */
+.left-box-info input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  /* tweak width for proper aspect */
+  height: 12px;
+  /* tweak height for proper aspect */
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  /* center + rotate */
+  transform-origin: center;
+  /* ensures rotation is around center */
+  box-sizing: border-box;
+}
+.service-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: grey;
+}
+.service-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000229;
+}

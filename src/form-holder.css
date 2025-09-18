@@ -1,0 +1,73 @@
+.form-container {
+  width: 75%;
+  height: 75%;
+  background-color: white;
+  display: flex;
+  border-radius: 2%;
+  padding: 1.7%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.left-side-steps {
+  width: 30%;
+  height: 100%;
+  background-image: url(../public/bg-sidebar-desktop.svg);
+  background-repeat: none;
+  background-size: cover;
+  border-radius: 12px;
+  padding: 3% 2%;
+  box-sizing: border-box;
+}
+
+.step-styling {
+  display: flex;
+  width: 100%;
+  gap: 10%;
+  margin-bottom: 15%;
+  font-weight: bolder;
+}
+.steps-button {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  border-radius: 50%;
+  padding: 3%;
+  height: 3%;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+/*When button is selected*/
+.button-selected {
+  background-color: #c0e3ff;
+  color: #03264e;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  border-radius: 50%;
+  padding: 3%;
+  height: 3%;
+  border: 1px solid white;
+}
+.step-number {
+  color: #b3b1ff;
+  padding-bottom: 4%;
+  letter-spacing: 1px;
+}
+.step-description {
+  color: white;
+  letter-spacing: 2px;
+}
+
+.component-holding-box-right {
+  padding: 4% 0%;
+  height: 100%;
+  box-sizing: border-box;
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
