@@ -6,12 +6,16 @@ import Step3Component from "./step-3-component /step-3-component";
 import Step4Component from "./step-4-component/step-4-component";
 
 export default function FormContainer() {
+  const [collectedData, setCollectedData] = useState();
+
   {
     /*Collecting user choice from step 2 component for 
     monthly or yearly to use in other components*/
   }
   function collectData(data) {
-    return data;
+    console.log("data collected:", data);
+    setCollectedData(data);
+    return;
   }
   {
     /*Tracking state for buttons clicked to switch*/
@@ -82,6 +86,7 @@ export default function FormContainer() {
       <div className="left-side-steps">
         <div className="step1 step-styling">
           <button
+            type="button"
             onClick={() => {
               if (step1Clicked) {
               } else {
@@ -118,6 +123,7 @@ export default function FormContainer() {
         <div className="step2 step-styling">
           {/*Using state and storing things in memory to verify things*/}
           <button
+            type="button"
             onClick={() => {
               if (step2Clicked) {
               } else {
@@ -153,6 +159,7 @@ export default function FormContainer() {
         {/*Step 3*/}
         <div className="step1 step-styling">
           <button
+            type="button"
             onClick={() => {
               if (step3Clicked) {
               } else {
@@ -237,11 +244,14 @@ export default function FormContainer() {
           <Step3Component
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
-            dataCollected={collectData}
+            dataCollected={collectedData}
           />
         )}
         {step4Clicked && (
-          <Step4Component goBackFunction={() => changeStep("back")} />
+          <Step4Component
+            goBackFunction={() => changeStep("back")}
+            dataCollected={collectedData}
+          />
         )}
       </div>
     </div>

@@ -6,6 +6,8 @@ import "./step-4-component.css";
 }
 
 export default function Step4Component(props) {
+  const isYearly = props.dataCollected; // boolean true/false
+
   return (
     <div className="step4-holder">
       <div className="personal-info-container4">
@@ -26,7 +28,10 @@ export default function Step4Component(props) {
                 <div className="finishing-change-text ">Change</div>
               </div>
 
-              <div className="finishing-plan-right-top">$9/mo</div>
+              <div className="finishing-plan-right-top">
+                {" "}
+                {isYearly ? "$90/yr" : "$9/mo"}
+              </div>
             </div>
 
             <hr />
@@ -36,7 +41,10 @@ export default function Step4Component(props) {
                   Arcade (Monthly)
                 </div>
               </div>
-              <div className="finishing-plan-right">+$1/mo</div>
+              <div className="finishing-plan-right">
+                {" "}
+                {isYearly ? "$10/yr" : "$1/mo"}
+              </div>
             </div>
             <div className="finishing-plan-row1">
               <div className="finishing-plan-left">
@@ -45,13 +53,19 @@ export default function Step4Component(props) {
                 </div>
               </div>
 
-              <div className="finishing-plan-right">+$2/mo</div>
+              <div className="finishing-plan-right">
+                {" "}
+                {isYearly ? "$20/yr" : "$2/mo"}
+              </div>
             </div>
           </div>
 
           <div className="total-per-month">
             <div className="total-title">Total (per month)</div>
-            <div className="total-amount">+$12/mo</div>
+            <div className="total-amount">
+              {" "}
+              {isYearly ? "$120/yr" : "$12/mo"}
+            </div>
           </div>
         </div>
       </div>

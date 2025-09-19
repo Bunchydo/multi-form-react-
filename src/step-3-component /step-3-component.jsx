@@ -10,6 +10,7 @@ export default function Step3Component(props) {
   let [isYearly1, setIsYearly1] = useState(false);
   let [isYearly2, setIsYearly2] = useState(false);
   let [isYearly3, setIsYearly3] = useState(false);
+  const isYearly = props.dataCollected; // boolean true/false
 
   const handleChange1 = (event) => {
     setIsYearly1(event.target.checked); // true if checked, false if unchecked
@@ -53,7 +54,7 @@ export default function Step3Component(props) {
             </div>
             <div className="right-box-info">
               {" "}
-              {isYearly1 ? "$10/yr" : "$1/mo"}
+              {isYearly ? "$10/yr" : "$1/mo"}
             </div>
           </div>
           {/*Service 2*/}
@@ -77,7 +78,7 @@ export default function Step3Component(props) {
             </div>
             <div className="right-box-info">
               {" "}
-              {isYearly2 ? "$20/yr" : "$2/mo"}
+              {isYearly ? "$20/yr" : "$2/mo"}
             </div>
           </div>
           {/*Service 3*/}
@@ -101,7 +102,7 @@ export default function Step3Component(props) {
             </div>
             <div className="right-box-info">
               {" "}
-              {isYearly3 ? "$20/yr" : "$2/mo"}
+              {isYearly ? "$20/yr" : "$2/mo"}
             </div>
           </div>
         </div>
