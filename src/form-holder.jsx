@@ -7,6 +7,7 @@ import Step4Component from "./step-4-component/step-4-component.jsx";
 
 export default function FormContainer() {
   const [collectedData, setCollectedData] = useState();
+  const [isYearlyPlan, setIsYearlyPlan] = useState(false);
 
   {
     /*Collecting user choice from step 2 component for 
@@ -15,6 +16,8 @@ export default function FormContainer() {
   function collectData(data) {
     console.log("data collected:", data);
     setCollectedData(data);
+    setIsYearlyPlan(data); // store plan choice here
+
     return;
   }
   {
@@ -33,7 +36,6 @@ export default function FormContainer() {
   const [button2IsClicked, setButton2IsClicked] = useState(false);
   const [button3IsClicked, setButton3IsClicked] = useState(false);
   const [button4IsClicked, setButton4IsClicked] = useState(false);
-
 
   function changeStep(direction = "next") {
     if (direction === "next") {
@@ -231,6 +233,7 @@ export default function FormContainer() {
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
             collectDataFunction={collectData}
+            isYearlyPlan={isYearlyPlan}
           />
         )}
         {step3Clicked && (

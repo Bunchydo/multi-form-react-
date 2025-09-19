@@ -10,13 +10,10 @@ import { useState } from "react";
 }
 
 export default function Step2Component(props) {
-  let [isYearly, setIsYearly] = useState(false);
-  {
-  }
-  const handleChange = (event) => {
-    setIsYearly(event.target.checked); // true if checked, false if unchecked
 
-    props.collectDataFunction(isYearly);
+  const isYearly = props.isYearlyPlan
+  const handleChange = (event) => {
+    props.collectDataFunction(event.target.checked); // send new value to parent
   };
 
   return (
@@ -89,6 +86,7 @@ export default function Step2Component(props) {
         </div>
         <div className="monthly-yearly-select">
           <span className="monthly-title">Monthly</span>
+          {/*Slider*/}
           <label className="switch">
             <input type="checkbox" checked={isYearly} onChange={handleChange} />
             
