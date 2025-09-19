@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./form-holder.css";
-import Step1Component from "./step-1-component/step-1.component";
-import Step2Component from "./step-2-component/step-2-component";
-import Step3Component from "./step-3-component /step-3-component";
-import Step4Component from "./step-4-component/step-4-component";
+import Step1Component from "./step-1-component/step-1-component.jsx";
+import Step2Component from "./step-2-component/step-2-component.jsx";
+import Step3Component from "./step-3-component /step-3-component.jsx";
+import Step4Component from "./step-4-component/step-4-component.jsx";
 
 export default function FormContainer() {
   const [collectedData, setCollectedData] = useState();
@@ -34,13 +34,6 @@ export default function FormContainer() {
   const [button3IsClicked, setButton3IsClicked] = useState(false);
   const [button4IsClicked, setButton4IsClicked] = useState(false);
 
-  {
-    /*Tracking which page is showing*/
-  }
-  const [onStep1, setOnStep1] = useState(true);
-  const [onStep2, setOnStep2] = useState(false);
-  const [onStep3, setOnStep3] = useState(false);
-  const [onStep4, setOnStep4] = useState(false);
 
   function changeStep(direction = "next") {
     if (direction === "next") {
@@ -244,7 +237,7 @@ export default function FormContainer() {
           <Step3Component
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
-            dataCollected={collectedData}
+            dataCollected={collectData}
           />
         )}
         {step4Clicked && (

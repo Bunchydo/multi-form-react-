@@ -45,7 +45,10 @@ export default function Step1Component(props) {
       </div>
 
       <div className="button-holder">
-        <button onClick={props.nextStepFunction} className="next-step-button custom-button">
+        <button
+          onClick={props.nextStepFunction}
+          className="next-step-button custom-button"
+        >
           Next Step
         </button>
       </div>

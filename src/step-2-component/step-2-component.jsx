@@ -15,6 +15,8 @@ export default function Step2Component(props) {
   }
   const handleChange = (event) => {
     setIsYearly(event.target.checked); // true if checked, false if unchecked
+
+    props.collectDataFunction(isYearly);
   };
 
   return (
@@ -89,7 +91,7 @@ export default function Step2Component(props) {
           <span className="monthly-title">Monthly</span>
           <label className="switch">
             <input type="checkbox" checked={isYearly} onChange={handleChange} />
-            {props.collectDataFunction(isYearly)}
+            
             <span className="slider"></span>
           </label>
           <span className="Yearly">Yearly</span>
