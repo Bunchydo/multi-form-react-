@@ -1,14 +1,21 @@
 import "./step-1-component.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Step1Component({
   nextStepFunction,
   collectDataFunction,
+  collectedData, // receive existing data from parent
 }) {
-  const [fullname, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  // Initialize state from parent collectedData
+  const [fullname, setName] = useState(collectedData?.name || "");
+  const [email, setEmail] = useState(collectedData?.email || "");
+  const [phone, setPhone] = useState(collectedData?.phone || "");
   const [errors, setErrors] = useState({ name: "", email: "", phone: "" });
+
+  // Keep parent state updated whenever local state changes
+  useEffect(() => {
+    collectDataFunction({ name: fullname, email, phone });
+  }, [fullname, email, phone, collectDataFunction]);
 
   const validate = () => {
     let tempErrors = { name: "", email: "", phone: "" };
@@ -36,7 +43,6 @@ export default function Step1Component({
 
   const handleNext = () => {
     if (validate()) {
-      collectDataFunction({ name: fullname, email, phone });
       nextStepFunction();
     }
   };

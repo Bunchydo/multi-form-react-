@@ -9,6 +9,7 @@ export default function Step4Component(props) {
     collectedData,
     goBackFunction,
   } = props;
+
   const [errors, setErrors] = useState({ personal: "", plan: "", addOns: "" });
 
   // Plan pricing
@@ -36,10 +37,9 @@ export default function Step4Component(props) {
   const planCost = planPrices[selectedPlan] || 0;
 
   // Add-ons cost
-  const addOnsCost = selectedAddOns.reduce(
-    (sum, addOn) => sum + (addOnPrices[addOn] || 0),
-    0
-  );
+  const addOnsCost = Array.isArray(selectedAddOns)
+    ? selectedAddOns.reduce((sum, addOn) => sum + (addOnPrices[addOn] || 0), 0)
+    : 0;
 
   // Total
   const totalCost = planCost + addOnsCost;
@@ -53,15 +53,15 @@ export default function Step4Component(props) {
   };
 
   const handleConfirm = () => {
-    let tempErrors = { personal: "", plan: "", addOns: "" };
+    const tempErrors = { personal: "", plan: "", addOns: "" };
     let valid = true;
 
     // Validate personal info
     if (
       !collectedData ||
-      !collectedData.name ||
-      !collectedData.email ||
-      !collectedData.phone
+      !collectedData.name?.trim() ||
+      !collectedData.email?.trim() ||
+      !collectedData.phone?.trim()
     ) {
       tempErrors.personal = "Please fill out all personal info fields";
       valid = false;
@@ -74,7 +74,7 @@ export default function Step4Component(props) {
     }
 
     // Validate add-ons
-    if (!selectedAddOns || selectedAddOns.length === 0) {
+    if (!Array.isArray(selectedAddOns) || selectedAddOns.length === 0) {
       tempErrors.addOns = "Please select at least one add-on";
       valid = false;
     }
@@ -116,7 +116,6 @@ export default function Step4Component(props) {
                 </div>
                 <div className="finishing-change-text">Change</div>
               </div>
-
               <div className="finishing-plan-right-top">
                 {isYearlyPlan ? `$${planCost}/yr` : `$${planCost}/mo`}
               </div>
@@ -125,7 +124,7 @@ export default function Step4Component(props) {
             <hr />
 
             {/* Selected Add-ons */}
-            {selectedAddOns.length > 0 ? (
+            {selectedAddOns && selectedAddOns.length > 0 ? (
               selectedAddOns.map((addOn) => (
                 <div className="finishing-plan-row1" key={addOn}>
                   <div className="finishing-plan-left">

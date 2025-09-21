@@ -225,7 +225,8 @@ export default function FormContainer() {
         {step1Clicked && (
           <Step1Component
             nextStepFunction={() => changeStep("next")}
-            collectDataFunction={collectData}
+            collectDataFunction={setCollectedData} // parent state setter
+            collectedData={collectedData} // pass current data
           />
         )}
         {step2Clicked && (
@@ -243,13 +244,14 @@ export default function FormContainer() {
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
             isYearlyPlan={isYearlyPlan}
-            collectAddOns={collectAddOns}
+            collectedAddOns={selectedAddOns} // pass current selected add-ons
+            collectAddOns={setSelectedAddOns} // setter from parent
           />
         )}
         {step4Clicked && (
           <Step4Component
             goBackFunction={() => changeStep("back")}
-            dataCollected={collectedData}
+            collectedData={collectedData}
             selectedPlan={selectedPlan}
             isYearlyPlan={isYearlyPlan}
             selectedAddOns={selectedAddOns}
