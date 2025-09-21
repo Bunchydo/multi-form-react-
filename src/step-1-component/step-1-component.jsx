@@ -1,6 +1,57 @@
 import "./step-1-component.css";
+import { useState } from "react";
 
-export default function Step1Component(props) {
+export default function Step1Component({
+  nextStepFunction,
+  collectDataFunction,
+}) {
+  const [fullname, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState({ name: "", email: "", phone: "" });
+
+  const validate = () => {
+    let tempErrors = { name: "", email: "", phone: "" };
+    let isValid = true;
+
+    if (!fullname.trim()) {
+      tempErrors.name = "This field is required";
+      isValid = false;
+    }
+    if (!email.trim()) {
+      tempErrors.email = "This field is required";
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      tempErrors.email = "Invalid email format";
+      isValid = false;
+    }
+    if (!phone.trim()) {
+      tempErrors.phone = "This field is required";
+      isValid = false;
+    }
+
+    setErrors(tempErrors);
+    return isValid;
+  };
+
+  const handleNext = () => {
+    if (validate()) {
+      collectDataFunction({ name: fullname, email, phone });
+      nextStepFunction();
+    }
+  };
+
+  const labelStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "5px",
+  };
+  const errorSpanStyle = {
+    color: "red",
+    fontSize: "0.9rem",
+    marginLeft: "10px",
+  };
+
   return (
     <div className="step1-holder">
       <div className="personal-info-container">
@@ -13,8 +64,13 @@ export default function Step1Component(props) {
 
         <form className="step1-form" action="">
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" style={labelStyle}>
+              Name
+              {errors.name && <span style={errorSpanStyle}>{errors.name}</span>}
+            </label>
             <input
+              value={fullname}
+              onChange={(e) => setName(e.target.value)}
               id="name"
               type="text"
               className="name input-custom"
@@ -23,8 +79,15 @@ export default function Step1Component(props) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email" style={labelStyle}>
+              Email Address
+              {errors.email && (
+                <span style={errorSpanStyle}>{errors.email}</span>
+              )}
+            </label>
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               type="text"
               className="email input-custom"
@@ -33,8 +96,15 @@ export default function Step1Component(props) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
+            <label htmlFor="phone" style={labelStyle}>
+              Phone Number
+              {errors.phone && (
+                <span style={errorSpanStyle}>{errors.phone}</span>
+              )}
+            </label>
             <input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               id="phone"
               type="text"
               className="phone-number input-custom"
@@ -45,10 +115,7 @@ export default function Step1Component(props) {
       </div>
 
       <div className="button-holder">
-        <button
-          onClick={props.nextStepFunction}
-          className="next-step-button custom-button"
-        >
+        <button onClick={handleNext} className="next-step-button custom-button">
           Next Step
         </button>
       </div>

@@ -53,9 +53,10 @@
 }
 .left-box-info {
   display: flex;
-  width: 45%;
-  justify-content: space-between;
+  width: 50%;
+
   align-items: center;
+  gap: 6%;
 }
 .left-box-info input[type="checkbox"] {
   appearance: none;

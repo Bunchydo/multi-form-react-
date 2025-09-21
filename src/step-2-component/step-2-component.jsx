@@ -3,18 +3,36 @@ import arcadeImage from "../assets/images/icon-arcade.svg";
 import advancedImage from "../assets/images/icon-advanced.svg";
 import proImage from "../assets/images/icon-pro.svg";
 import { useState } from "react";
-{
-  /*Some styles are sharing from the step-1-component css file. 
-  I didn't realize     that would happen until I started. So they're using
-  step-1 component class names. So i just stuck with it*/
-}
 
-export default function Step2Component(props) {
+export default function Step2Component({
+  nextStepFunction,
+  goBackFunction,
+  selectedPlanHolder,
+  collectedSelectedPlanHolder,
+  isYearlyPlan,
+  collectDataFunction,
+}) {
+  const [selectedPlan, setSelectedPlan] = useState(
+    collectedSelectedPlanHolder || null
+  );
+  const [error, setError] = useState("");
 
-  const isYearly = props.isYearlyPlan
-  const handleChange = (event) => {
-    props.collectDataFunction(event.target.checked); // send new value to parent
+  const handleNext = () => {
+    if (!selectedPlan) {
+      setError("Please select a plan");
+      return;
+    }
+    selectedPlanHolder(selectedPlan);
+    setError("");
+    nextStepFunction();
   };
+
+  const handleSelectPlan = (plan) => {
+    setSelectedPlan(plan);
+    setError("");
+  };
+
+  const errorStyle = { color: "red", fontSize: "0.9rem", marginBottom: "10px" };
 
   return (
     <div className="step2-holder">
@@ -26,70 +44,61 @@ export default function Step2Component(props) {
           </div>
         </div>
 
+        {error && <div style={errorStyle}>{error}</div>}
+
         <div className="plan-selection">
-          <div className="arcade-plan plan-custom">
-            <div className="icon-box">
-              <img src={arcadeImage} alt="" />
-            </div>
-            <div className="plan-description">
-              <div className="plan-title">Arcade</div>
-              <div className="plan-cost">
-                {isYearly ? (
-                  <div className="is-yearly-option">
-                    <div>$150/yr</div>
-                    <div className="blue-text">2 months free</div>{" "}
-                  </div>
-                ) : (
-                  "$9/mo"
-                )}
-              </div>
+          <div
+            onClick={() => handleSelectPlan("arcade")}
+            className={
+              selectedPlan === "arcade"
+                ? "arcade-plan-active"
+                : "arcade-plan plan-custom"
+            }
+          >
+            <img src={arcadeImage} alt="Arcade" />
+            <div className="plan-title">Arcade</div>
+            <div className="plan-cost">{isYearlyPlan ? "$90/yr" : "$9/mo"}</div>
+          </div>
+
+          <div
+            onClick={() => handleSelectPlan("advanced")}
+            className={
+              selectedPlan === "advanced"
+                ? "advanced-plan-active"
+                : "advanced-plan plan-custom"
+            }
+          >
+            <img src={advancedImage} alt="Advanced" />
+            <div className="plan-title">Advanced</div>
+            <div className="plan-cost">
+              {isYearlyPlan ? "$120/yr" : "$12/mo"}
             </div>
           </div>
-          <div className="advanced-plan plan-custom">
-            <div className="icon-box">
-              <img src={advancedImage} alt="" />
-            </div>
-            <div className="plan-description">
-              <div className="plan-title">Advanced</div>
-              <div className="plan-cost">
-                {" "}
-                {isYearly ? (
-                  <div className="is-yearly-option">
-                    <div>$150/yr</div>
-                    <div className="blue-text">2 months free</div>{" "}
-                  </div>
-                ) : (
-                  "$12/mo"
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="pro-plan plan-custom">
-            <div className="icon-box">
-              <img src={proImage} alt="" />
-            </div>
-            <div className="plan-description">
-              <div className="plan-title">Pro</div>
-              <div className="plan-cost">
-                {" "}
-                {isYearly ? (
-                  <div className="is-yearly-option">
-                    <div>$150/yr</div>
-                    <div className="blue-text">2 months free</div>{" "}
-                  </div>
-                ) : (
-                  "$15/mo"
-                )}
-              </div>
+
+          <div
+            onClick={() => handleSelectPlan("pro")}
+            className={
+              selectedPlan === "pro"
+                ? "pro-plan-active"
+                : "pro-plan plan-custom"
+            }
+          >
+            <img src={proImage} alt="Pro" />
+            <div className="plan-title">Pro</div>
+            <div className="plan-cost">
+              {isYearlyPlan ? "$150/yr" : "$15/mo"}
             </div>
           </div>
         </div>
+
         <div className="monthly-yearly-select">
           <span className="monthly-title">Monthly</span>
-          {/*Slider*/}
           <label className="switch">
-            <input type="checkbox" checked={isYearly} onChange={handleChange} />
-            
+            <input
+              type="checkbox"
+              checked={isYearlyPlan}
+              onChange={(e) => collectDataFunction(e.target.checked)}
+            />
             <span className="slider"></span>
           </label>
           <span className="Yearly">Yearly</span>
@@ -97,17 +106,10 @@ export default function Step2Component(props) {
       </div>
 
       <div className="button-holder-steps">
-        <button
-          className="go-back custom-button"
-          onClick={props.goBackFunction} // triggers going back
-        >
+        <button className="go-back custom-button" onClick={goBackFunction}>
           Go Back
         </button>
-
-        <button
-          className="next-step-button custom-button"
-          onClick={props.nextStepFunction} // triggers going forward
-        >
+        <button className="next-step-button custom-button" onClick={handleNext}>
           Next Step
         </button>
       </div>

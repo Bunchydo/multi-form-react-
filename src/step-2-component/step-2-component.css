@@ -110,12 +110,49 @@
 .switch input:checked + .slider::before {
   transform: translateX(26px);
 }
-.blue-text{
+.blue-text {
   color: #51657e;
   font-weight: bold;
 }
-.is-yearly-option{
+.is-yearly-option {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.arcade-plan-active {
+  border: 2px solid purple;
+  background-color: rgb(255, 243, 255);
+  width: 29%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 4% 3%;
+  border-radius: 12px;
+}
+.pro-plan-active {
+  border: 2px solid purple;
+  background-color: rgb(255, 243, 255);
+  width: 29%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 4% 3%;
+  border-radius: 12px;
+}
+.advanced-plan-active {
+  border: 2px solid purple;
+  background-color: rgb(255, 243, 255);
+  width: 29%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 4% 3%;
+  border-radius: 12px;
 }

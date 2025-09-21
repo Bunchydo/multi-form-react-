@@ -1,26 +1,24 @@
 import "./step-3-component.css";
-import { useState } from "react";
-{
-  /*Some styles are sharing from the step-1-component css file. 
-  I didn't realize     that would happen until I started. So they're using
-  step-1 component class names. So i just stuck with it*/
-}
+import { useState, useEffect } from "react";
 
 export default function Step3Component(props) {
-  let [isYearly1, setIsYearly1] = useState(false);
-  let [isYearly2, setIsYearly2] = useState(false);
-  let [isYearly3, setIsYearly3] = useState(false);
-  const isYearly = props.dataCollected; // boolean true/false
+  const { isYearlyPlan, collectAddOns } = props;
 
-  const handleChange1 = (event) => {
-    setIsYearly1(event.target.checked); // true if checked, false if unchecked
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
+
+  // ✅ Notify parent whenever selectedAddOns changes
+  useEffect(() => {
+    collectAddOns(selectedAddOns);
+  }, [selectedAddOns, collectAddOns]);
+
+  const toggleAddOn = (service) => {
+    setSelectedAddOns((prev) =>
+      prev.includes(service)
+        ? prev.filter((item) => item !== service)
+        : [...prev, service]
+    );
   };
-  const handleChange2 = (event) => {
-    setIsYearly2(event.target.checked); // true if checked, false if unchecked
-  };
-  const handleChange3 = (event) => {
-    setIsYearly3(event.target.checked); // true if checked, false if unchecked
-  };
+
   return (
     <div className="step3-holder">
       <div className="personal-info-container3">
@@ -32,18 +30,19 @@ export default function Step3Component(props) {
         </div>
 
         <div className="add-on-holder">
-          {" "}
-          {/*Service 1*/}
+          {/* Service 1 */}
           <div
             className={
-              isYearly1 ? "services-container-active" : "services-container"
+              selectedAddOns.includes("online")
+                ? "services-container-active"
+                : "services-container"
             }
           >
             <div className="left-box-info">
               <input
                 type="checkbox"
-                checked={isYearly1}
-                onChange={handleChange1}
+                checked={selectedAddOns.includes("online")}
+                onChange={() => toggleAddOn("online")}
               />
               <div className="service-info">
                 <div className="service-title">Online service</div>
@@ -53,56 +52,57 @@ export default function Step3Component(props) {
               </div>
             </div>
             <div className="right-box-info">
-              {" "}
-              {isYearly ? "$10/yr" : "$1/mo"}
+              {isYearlyPlan ? "$10/yr" : "$1/mo"}
             </div>
           </div>
-          {/*Service 2*/}
+
+          {/* Service 2 */}
           <div
             className={
-              isYearly2 ? "services-container-active" : "services-container"
+              selectedAddOns.includes("storage")
+                ? "services-container-active"
+                : "services-container"
             }
           >
             <div className="left-box-info">
               <input
                 type="checkbox"
-                checked={isYearly2}
-                onChange={handleChange2}
+                checked={selectedAddOns.includes("storage")}
+                onChange={() => toggleAddOn("storage")}
               />
               <div className="service-info">
-                <div className="service-title">Online service</div>
-                <div className="service-detail">
-                  Access to multiplayer games
-                </div>
+                <div className="service-title">Larger storage</div>
+                <div className="service-detail">Extra 1TB of cloud save</div>
               </div>
             </div>
             <div className="right-box-info">
-              {" "}
-              {isYearly ? "$20/yr" : "$2/mo"}
+              {isYearlyPlan ? "$20/yr" : "$2/mo"}
             </div>
           </div>
-          {/*Service 3*/}
+
+          {/* Service 3 */}
           <div
             className={
-              isYearly3 ? "services-container-active" : "services-container"
+              selectedAddOns.includes("custom")
+                ? "services-container-active"
+                : "services-container"
             }
           >
             <div className="left-box-info">
               <input
                 type="checkbox"
-                checked={isYearly3}
-                onChange={handleChange3}
+                checked={selectedAddOns.includes("custom")}
+                onChange={() => toggleAddOn("custom")}
               />
               <div className="service-info">
-                <div className="service-title">Online service</div>
+                <div className="service-title">Customizable profile</div>
                 <div className="service-detail">
-                  Access to multiplayer games
+                  Custom theme on your profile
                 </div>
               </div>
             </div>
             <div className="right-box-info">
-              {" "}
-              {isYearly ? "$20/yr" : "$2/mo"}
+              {isYearlyPlan ? "$20/yr" : "$2/mo"}
             </div>
           </div>
         </div>
@@ -111,14 +111,14 @@ export default function Step3Component(props) {
       <div className="button-holder-steps">
         <button
           className="go-back custom-button"
-          onClick={props.goBackFunction} // triggers going back
+          onClick={props.goBackFunction}
         >
           Go Back
         </button>
 
         <button
           className="next-step-button custom-button"
-          onClick={props.nextStepFunction} // triggers going forward
+          onClick={props.nextStepFunction}
         >
           Next Step
         </button>
