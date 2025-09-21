@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./form-holder.css";
 import Step1Component from "./step-1-component/step-1-component.jsx";
 import Step2Component from "./step-2-component/step-2-component.jsx";
-import Step4Component from "./step-4-component/step-4-component.jsx";
-import Confirmation from "./step-3-component/step-3-component.jsx";
 import Step3Component from "./step-3-component/step-3-component.jsx";
+import Step4Component from "./step-4-component/step-4-component.jsx";
+import Confirmation from "./confirmation.jsx";
 
 export default function FormContainer() {
   // Step data
@@ -80,7 +80,7 @@ export default function FormContainer() {
     validateStep1() && validateStep2() && validateStep3();
 
   // Step navigation
-  function changeStep(direction = "next") {
+  const changeStep = (direction = "next") => {
     if (direction === "next") {
       if (step1Clicked && !validateStep1()) return;
       if (step2Clicked && !validateStep2()) return;
@@ -120,7 +120,7 @@ export default function FormContainer() {
         setButton1IsClicked(true);
       }
     }
-  }
+  };
 
   // Step buttons click
   const handleStepClick = (step) => {
@@ -166,21 +166,14 @@ export default function FormContainer() {
     }
   };
 
-  // Confirm
+  // Confirm: shows confirmation page
   const handleConfirm = () => {
-    if (validateStep1() && validateStep2()) {
-      setShowConfirmation(true);
-    } else {
-      alert(
-        "Please fill out all required fields and select a plan before confirming."
-      );
-    }
+    setStep1Clicked(false);
+    setStep2Clicked(false);
+    setStep3Clicked(false);
+    setStep4Clicked(false);
+    setShowConfirmation(true);
   };
-
-  if (showConfirmation) {
-    return <Confirmation />;
-  }
-
 
   return (
     <div className="form-container">
@@ -191,13 +184,10 @@ export default function FormContainer() {
             <button
               onClick={() => handleStepClick(step)}
               className={
-                step === 1 && button1IsClicked
-                  ? "button-selected"
-                  : step === 2 && button2IsClicked
-                  ? "button-selected"
-                  : step === 3 && button3IsClicked
-                  ? "button-selected"
-                  : step === 4 && button4IsClicked
+                (step === 1 && button1IsClicked) ||
+                (step === 2 && button2IsClicked) ||
+                (step === 3 && button3IsClicked) ||
+                (step === 4 && button4IsClicked)
                   ? "button-selected"
                   : "number1-button steps-button"
               }
@@ -222,14 +212,15 @@ export default function FormContainer() {
 
       {/* Right side */}
       <div className="component-holding-box-right">
-        {step1Clicked && (
+        {showConfirmation && <Confirmation />}
+        {!showConfirmation && step1Clicked && (
           <Step1Component
             nextStepFunction={() => changeStep("next")}
-            collectDataFunction={setCollectedData} // parent state setter
-            collectedData={collectedData} // pass current data
+            collectDataFunction={setCollectedData}
+            collectedData={collectedData}
           />
         )}
-        {step2Clicked && (
+        {!showConfirmation && step2Clicked && (
           <Step2Component
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
@@ -239,16 +230,16 @@ export default function FormContainer() {
             collectDataFunction={setIsYearlyPlan}
           />
         )}
-        {step3Clicked && (
+        {!showConfirmation && step3Clicked && (
           <Step3Component
             nextStepFunction={() => changeStep("next")}
             goBackFunction={() => changeStep("back")}
             isYearlyPlan={isYearlyPlan}
-            collectedAddOns={selectedAddOns} // pass current selected add-ons
-            collectAddOns={setSelectedAddOns} // setter from parent
+            collectedAddOns={selectedAddOns}
+            collectAddOns={setSelectedAddOns}
           />
         )}
-        {step4Clicked && (
+        {!showConfirmation && step4Clicked && (
           <Step4Component
             goBackFunction={() => changeStep("back")}
             collectedData={collectedData}

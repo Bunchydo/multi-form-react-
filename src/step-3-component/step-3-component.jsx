@@ -2,7 +2,8 @@ import "./step-3-component.css";
 
 export default function Step3Component({
   isYearlyPlan,
-  collectedAddOns, // renamed to match what parent passes
+    collectedAddOns = [], // default to empty array
+ // renamed to match what parent passes
   collectAddOns,
   goBackFunction,
   nextStepFunction,

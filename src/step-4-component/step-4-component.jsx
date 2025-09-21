@@ -1,6 +1,5 @@
 import "./step-4-component.css";
 import { useState } from "react";
-
 export default function Step4Component(props) {
   const {
     isYearlyPlan,
@@ -52,39 +51,40 @@ export default function Step4Component(props) {
     marginBottom: "10px",
   };
 
-  const handleConfirm = () => {
-    const tempErrors = { personal: "", plan: "", addOns: "" };
-    let valid = true;
+const handleConfirm = () => {
+  const tempErrors = { personal: "", plan: "", addOns: "" };
+  let valid = true;
 
-    // Validate personal info
-    if (
-      !collectedData ||
-      !collectedData.name?.trim() ||
-      !collectedData.email?.trim() ||
-      !collectedData.phone?.trim()
-    ) {
-      tempErrors.personal = "Please fill out all personal info fields";
-      valid = false;
-    }
+  // Validate personal info
+  if (
+    !collectedData ||
+    !collectedData.name?.trim() ||
+    !collectedData.email?.trim() ||
+    !collectedData.phone?.trim()
+  ) {
+    tempErrors.personal = "Please fill out all personal info fields";
+    valid = false;
+  }
 
-    // Validate plan
-    if (!selectedPlan) {
-      tempErrors.plan = "Please select a plan";
-      valid = false;
-    }
+  // Validate plan
+  if (!selectedPlan) {
+    tempErrors.plan = "Please select a plan";
+    valid = false;
+  }
 
-    // Validate add-ons
-    if (!Array.isArray(selectedAddOns) || selectedAddOns.length === 0) {
-      tempErrors.addOns = "Please select at least one add-on";
-      valid = false;
-    }
+  // Validate add-ons
+  if (!Array.isArray(selectedAddOns) || selectedAddOns.length === 0) {
+    tempErrors.addOns = "Please select at least one add-on";
+    valid = false;
+  }
 
-    setErrors(tempErrors);
+  setErrors(tempErrors);
 
-    if (valid) {
-      alert("Form successfully confirmed!");
-    }
-  };
+  if (valid) {
+    // Call the parent function to show confirmation
+    props.confirmFunction();
+  }
+};
 
   return (
     <div className="step4-holder">
