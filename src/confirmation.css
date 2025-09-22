@@ -1,18 +1,38 @@
-.confirmation{
-    height: 45%;
-    width: 80%;
+.confirmation {
+  height: 45%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin: auto auto;
+}
+.first-row {
+  display: flex;
+  justify-content: center;
+}
+.second-row {
+  font-size: 40px;
+  color: #03264e;
+  display: flex;
+  justify-content: center;
+}
+
+.third-row {
+  color: grey;
+  line-height: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .confirmation {
+    height: 25%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     margin: auto auto;
-}
-.second-row{
-    font-size: 40px;
-    color: #03264e;
-}
-
-.third-row{
-    color: grey;
-    line-height: 35px;
+  }
 }
